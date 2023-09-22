@@ -9,8 +9,13 @@ const selectUser = (db, userData) => {
     const sql = "SELECT id, uuid, username, password FROM user WHERE username=? AND password=?";
     const params = [userData['user'], userData['password']];
     db.query(sql, params, function (error, results, fields) {
-      if (error) throw error;
-      console.log('The result is: ', results[0]);
+      if (error) {
+        rj(error)
+      };
+      if(results.length == 0) {
+        rs(false)
+      }
+      rs(true)
     });
   });
 }
@@ -19,7 +24,7 @@ router.post('/', async (ctx, next) => {
   console.log(ctx.request.body);
 
   let selectRes = await selectUser(ctx.db, ctx.request.body)
-
+  ctx.session.login = selectRes;
   ctx.body = 200;
 });
 
