@@ -17,12 +17,13 @@ app.use(bodyParser()) // 註冊 post request parser
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const loginRouter = require('./routes/login');
+const apiRouter = require('./routes/api');
 
 // 建立並綁定 render
 render(app, {
   root: path.join(__dirname, "views"),
   layout: false,
-  viewExt: "html",
+  viewExt: "ejs",
   cache: false,
   debug: false,
 });
@@ -66,5 +67,6 @@ app.use(session(CONFIG, app));
 app.use(indexRouter.routes(), indexRouter.allowedMethods());
 app.use(userRouter.routes(), userRouter.allowedMethods());
 app.use(loginRouter.routes(), loginRouter.allowedMethods());
+app.use(apiRouter.routes(), apiRouter.allowedMethods());
 
 app.listen(3000);

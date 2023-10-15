@@ -22,8 +22,12 @@ const selectUser = (db, userData) => {
 
 router.post('/', async (ctx, next) => {
   console.log(ctx.request.body);
-
-  let selectRes = await selectUser(ctx.db, ctx.request.body)
+  let selectRes
+  try {
+    selectRes = await selectUser(ctx.db, ctx.request.body)
+  } catch(err) {
+    console.log(err);
+  }
   ctx.session.login = selectRes;
   ctx.body = 200;
 });
