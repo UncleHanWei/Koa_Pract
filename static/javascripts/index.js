@@ -10,10 +10,10 @@ function getUnfinishList() {
       result = JSON.parse(result)
       let html = ''
       result.forEach(element => {
-        html += element?.create_time + '<br>'
-        html += element?.due_time + '<br>'
-        html += element?.content + '<br>'
-        html += element?.status ? '已完成' : '未完成' + '<br>'
+        html += `建立時間: ${new Date(element?.create_time)}<br>`
+        html += `到期時間: ${new Date(element?.due_time)}<br>`
+        html += `事項內容: ${element?.content}<br>`
+        html += `完成狀態: ${element?.status ? '已完成' : '未完成'}<br><hr>`
       });
       document.getElementById('unfinished').innerHTML = html
     })
@@ -32,10 +32,10 @@ function getFinishList() {
       result = JSON.parse(result)
       let html = ''
       result.forEach(element => {
-        html += element?.create_time + '<br>'
-        html += element?.due_time + '<br>'
-        html += element?.content + '<br>'
-        html += element?.status ? '已完成' : '未完成' + '<br>'
+        html += `建立時間: ${new Date(element?.create_time)}<br>`
+        html += `到期時間: ${new Date(element?.due_time)}<br>`
+        html += `事項內容: ${element?.content}<br>`
+        html += `完成狀態: ${element?.status ? '已完成' : '未完成'}<br><hr>`
       });
       document.getElementById('finished').innerHTML = html
     })

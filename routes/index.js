@@ -13,4 +13,9 @@ router.get('/login', async (ctx, next) => {
   await ctx.render('login', {title: "This is from backend"})
 });
 
+
+router.get('/add_todo', async (ctx, next) => {
+  await ctx.render('add_todo', {title: "This is from backend"})
+});
+
 module.exports = router;

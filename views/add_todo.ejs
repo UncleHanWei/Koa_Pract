@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%- include('./models/bs_css') %>
+  <title>Document</title>
+</head>
+<body>
+  <%- include('./navbar') %>
+  <main class="container text-center">
+    <div class="row">
+      <div class="col-6 border border-5 border-primary m-auto">
+        <div class="row">
+          <div class="col-6">到期時間</div>
+          <div class="col-6">
+            <input type="datetime-local" name="due_time" id="due_time">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">事項內容</div>
+          <div class="col-6">
+            <input type="text" name="content" id="content">
+          </div>
+        </div>
+        <div class="row m-1">
+          <div class="col-12">
+            <button class="btn btn-outline-primary w-50" type="button" onclick="addTODO()">送出</button>
+          </div>
+        </div>
+        <div class="row m-1">
+          <div class="col-12">
+            <a href="/">回首頁</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <%- include('./models/bs_js') %>
+  <script src="/javascripts/add_todo.js"></script>
+</body>
+</html>

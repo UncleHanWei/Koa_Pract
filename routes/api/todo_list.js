@@ -39,6 +39,20 @@ let getFinishItems = async (db) => {
 };
 
 
+let addItem = (db, formData) => {
+  return new Promise((rs, rj) => {
+    let sql = "INSERT INTO `item`(`due_time`, `content`) VALUES (?, ?)";
+    let params = [formData?.due_time, formData?.content];
+    db.query(sql, params, function(error, results, fields) {
+      if(error) {
+        rj(error);
+      }
+      rs(200);
+    })
+  });
+}
+
+
 router.get('/unfinished', async (ctx, next) => {
   let res;
   try {
@@ -58,7 +72,19 @@ router.get('/finished', async (ctx, next) => {
     console.log(error);
   }
   ctx.body = res;
+});
 
+
+router.post('/item', async (ctx, next) => {
+  let res;
+  console.log(ctx.request.body);
+  let formData = ctx.request.body;
+  try {
+    res = await addItem(ctx.db, formData);
+  } catch (error) {
+    console.log(error);
+  }
+  ctx.body = res;
 });
 
 module.exports = router;
